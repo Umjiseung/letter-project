@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Romantic Letter – Scrollable Full Page</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700&family=Nanum+Pen+Script&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --paper:#fffdf6;
+      --ink:#263238;
+      --accent:#ef5350;
+      --accent-2:#607d8b;
+      --rule:#e7dcc7;
+      --shadow:0 10px 30px rgba(0,0,0,.08);
+    }
+
+    body{
+      margin:0; padding:24px; background:#f4f5f7; color:var(--ink);
+      font-family:"Noto Serif KR", ui-serif, Georgia, serif;
+    }
+
+    .page{
+      width:210mm;
+      min-height:297mm; /* 최소 높이 A4, 내용에 따라 늘어남 */
+      margin:0 auto 20px;
+      background:var(--paper);
+      box-shadow:var(--shadow);
+      position:relative;
+      border-radius:18px;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+      overflow: visible; /* 전체 스크롤 허용 */
+    }
+    @page{ size:A4; margin:0; }
+    @media print{
+      body{ background:transparent; padding:0; }
+      .page{ box-shadow:none; margin:0; }
+    }
+
+    .page::before{
+      content:""; position:absolute; inset:0; pointer-events:none;
+      background:
+              radial-gradient(1200px 800px at 110% -10%, rgba(239,83,80,.06), transparent 60%),
+              radial-gradient(1400px 900px at -10% 110%, rgba(96,125,139,.06), transparent 55%),
+              repeating-linear-gradient(135deg, rgba(0,0,0,.015) 0 2px, transparent 2px 6px);
+    }
+    .page::after{
+      content:""; position:absolute; inset:18mm; border:2px dashed rgba(96,125,139,.18); border-radius:14px; pointer-events:none;
+    }
+
+    .header{
+      position:relative; padding:22mm 22mm 8mm; text-align:center;
+    }
+    .ribbon{
+      display:inline-block; padding:10px 18px; background:var(--accent); color:white; font-weight:700; letter-spacing:.5px; border-radius:999px; box-shadow:0 6px 20px rgba(239,83,80,.35);
+      font-size:18px;
+    }
+    .subtitle{ margin-top:10px; font-size:14px; color:#6b7280; }
+
+    .meta{
+      display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:12px 22mm 4mm; font-size:14px;
+    }
+    .meta label{ color:#6b7280; display:block; font-size:12px; margin-bottom:6px; }
+    .meta .field{
+      background:#fff; border:1px solid #e5e7eb; border-radius:12px; padding:10px 12px; min-height:42px; display:flex; align-items:center; justify-content:space-between; gap:8px;
+    }
+    .meta .field .value{ font-weight:600; }
+    .heart{ width:18px; height:18px; display:inline-block; background:var(--accent); clip-path:path("M12 21s-7.5-4.35-10.5-9C-1 6 2 2.5 5.5 3.5 7.5 4 9 6 12 8.5 15 6 16.5 4 18.5 3.5 22 2.5 25 6 22.5 12c-3 4.65-10.5 9-10.5 9Z"); opacity:.9; }
+
+    .letter-body{
+      box-sizing: border-box; position:relative; margin:2mm 22mm 0; padding: 8mm 16mm; border-radius:14px;
+      background: repeating-linear-gradient( to bottom, var(--paper) 0 31px, var(--rule) 31px 32px );
+      border:1px solid var(--rule);
+      font-family:"Nanum Pen Script", system-ui, -apple-system, Segoe UI, Roboto, "Noto Sans KR", sans-serif;
+      font-size:23px; line-height:32px; white-space:pre-wrap; word-break:keep-all;text-align: left;
+    }
+
+    .footer{
+      margin:8mm 22mm 0; padding:0 2mm 20mm; font-size:16px; display:flex; justify-content:flex-end; color:#6b7280;
+    }
+    .sign{ text-align:right; }
+    .sign .from{ font-weight:700; color:var(--accent-2); }
+
+    .quote{
+      margin:10mm 22mm 0; padding:10px 14px; border-left:4px solid var(--accent); background:rgba(239,83,80,.06); border-radius:8px;
+      font-style:italic; color:#7a7a7a; font-size:14px;
+    }
+
+  </style>
+</head>
+<body>
+
+<section class="page">
+  <header class="header">
+    <div class="ribbon">우리의 300일 편지</div>
+    <div class="subtitle">오늘의 행복을 위해</div>
+  </header>
+
+  <div class="meta">
+    <div class="field">
+      <div>
+        <label>To.</label>
+        <span class="value">사랑하는 지은에게</span>
+      </div>
+      <i class="heart" aria-hidden="true"></i>
+    </div>
+    <div class="field">
+      <div>
+        <label>From.</label>
+        <span class="value from">지성이가</span>
+      </div>
+    </div>
+  </div>
+
+  <main class="letter-body">
+    <div class="content">
+      사랑하는 지은에게,
+
+      밖에만 나가도 햇볕이 쏟아지고 숨이 턱 막히는 여름이야. 하지만 너랑 있으면 더위조차 특별하게 느껴져. 뜨거운 태양 같은 계절 속에서, 너는 내 마음을 시원하게 식혀주는 바람이자, 또 동시에 나를 설레게 달궈주는 따뜻한 햇살 같아.
+
+      우리가 함께한 300일 동안 계절이 세 번이나 바뀌었는데, 그 모든 시간 속에서 가장 선명하게 남는 건 늘 네 웃음이야. 처음 우리가 만났던 날, 너의 그 웃음 덕분에 긴장했던 마음이 단숨에 풀렸던 기억이 아직도 생생해. 그리고 어느 날 함께 걸었던 여름 저녁, 길가에 흘러나오던 음악에 맞춰 서로 어색하게 손을 맞잡았던 순간까지, 모든 게 내게는 영화 속 한 장면 같아.
+
+      더운 날씨에 먹는 아이스크림처럼 달콤했고, 가끔은 소나기처럼 시원하게 내 마음을 적셔주기도 했지. 그래서인지 나는 여름이 점점 더 좋아지고 있어. 여름은 곧 너를 닮았으니까. 햇살이 따갑게 내리쬐어도, 바람이 너무 뜨거워도, 너와 함께라면 그 모든 순간이 즐거움으로 바뀌어.
+
+      앞으로 우리 앞에는 더 많은 계절과 날들이 있겠지. 뜨거운 여름날도, 추운 겨울밤도, 다 같이 겪어내면서 오늘처럼 특별한 날들을 차곡차곡 쌓아가고 싶어. 그리고 그 모든 시간 속에서 네가 가장 행복했으면 해.
+
+      너와 함께 걷는 길 위에서, 매 순간 웃고, 서로 기대며, 가끔은 장난치며, 또 서로의 마음을 확인하는 우리만의 시간이 계속 이어졌으면 해.
+
+      지은아, 300일 동안 내 옆에 있어줘서 고마워. 앞으로 맞이할 모든 계절 속에서도, 너와 함께라면 언제나 가장 아름다운 날로 기억될 거야. 내 인생의 모든 계절을 너와 함께 걸어가고 싶어.
+
+      늘 너를 사랑하는,
+      지성이가.
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="sign">
+      <div>With love,</div>
+      <div class="from">지성이가</div>
+    </div>
+  </footer>
+</section>
+
+</body>
+</html>
